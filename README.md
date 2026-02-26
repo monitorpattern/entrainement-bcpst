@@ -1,8 +1,59 @@
-# entrainement-bcpst
+# Entrainement BCPST
 
-This template should help get you started developing with Vue 3 in Vite.
+Application full-stack pour l'entraînement BCPST avec Vue 3 (frontend), FastAPI (backend) et PostgreSQL (database).
 
-## Recommended IDE Setup
+## Structure du projet
+
+```
+entrainement-bcpst/
+├── frontend/       # Application Vue 3 + Vite
+├── backend/        # API Python FastAPI
+├── database/       # Scripts et migrations de base de données
+└── docker-compose.yml
+```
+
+## Démarrage rapide
+
+### Option 1: Avec Docker (recommandé)
+
+```sh
+docker-compose up -d
+```
+
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:8000
+- Database: localhost:5432
+
+### Option 2: Manuel
+
+#### Frontend
+```sh
+cd frontend
+npm install
+npm run dev
+```
+
+#### Backend
+```sh
+cd backend
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env
+uvicorn main:app --reload
+```
+
+#### Database
+Installez PostgreSQL localement ou utilisez Docker:
+```sh
+docker run -d -p 5432:5432 -e POSTGRES_PASSWORD=password -e POSTGRES_DB=entrainement_bcpst postgres:16-alpine
+```
+
+---
+
+## Frontend (Vue 3)
+
+### Recommended IDE Setup
 
 [VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
@@ -23,32 +74,21 @@ TypeScript cannot handle type information for `.vue` imports by default, so we r
 
 See [Vite Configuration Reference](https://vite.dev/config/).
 
-## Project Setup
+### Commandes Frontend
 
 ```sh
-npm install
+cd frontend
+npm install              # Installation des dépendances
+npm run dev              # Développement
+npm run build            # Build de production
+npm run test:unit        # Tests unitaires
+npm run lint             # Linting
 ```
 
-### Compile and Hot-Reload for Development
+## Backend (FastAPI)
 
-```sh
-npm run dev
-```
+Voir [backend/README.md](backend/README.md) pour plus de détails.
 
-### Type-Check, Compile and Minify for Production
+## Database (PostgreSQL)
 
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Voir [database/README.md](database/README.md) pour plus de détails.
